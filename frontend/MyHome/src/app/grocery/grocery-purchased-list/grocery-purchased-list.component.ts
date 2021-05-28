@@ -13,27 +13,27 @@ import * as actions from './store/grocery-purchased.actions';
   styleUrls: ['./grocery-purchased-list.component.css']
 })
 export class GroceryPurchasedListComponent implements OnInit, OnDestroy {
-  purchasedGloceries: GroceryItem[];
+  purchasedGroceries: GroceryItem[];
   subscription: Subscription;
 
   constructor(/*private purchasedGroceryService: PurchasedGroceryService,*/
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    /*this.subscription = this.purchasedGroceryService.changedGloceries
-      .subscribe((gloceries: GroceryItem[]) => {
-        this.purchasedGrocery = gloceries;
+    /*this.subscription = this.purchasedGroceryService.changedGroceries
+      .subscribe((Groceries: GroceryItem[]) => {
+        this.purchasedGrocery = Groceries;
       });
     this.purchasedGrocery = this.purchasedGroceryService.getPurchasedItems();*/
 
-    this.subscription = this.store.select("purchasedGloceries")
-      .subscribe((gloceriesState) => {
-        this.purchasedGloceries = gloceriesState.gloceries;
+    this.subscription = this.store.select("purchasedGroceries")
+      .subscribe((GroceriesState) => {
+        this.purchasedGroceries = GroceriesState.Groceries;
       });
   }
 
   purchase() {
-    this.store.dispatch(new actions.PurchasedGloceries(this.purchasedGloceries));
+    this.store.dispatch(new actions.PurchasedGroceries(this.purchasedGroceries));
   }
 
   ngOnDestroy(): void {

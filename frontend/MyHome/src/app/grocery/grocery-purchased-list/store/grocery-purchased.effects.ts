@@ -12,9 +12,9 @@ import { of } from "rxjs";
 export class PurchasedGloceryEffect {
 
     @Effect({dispatch: false})
-    purchasedGloceries = this.actions$.pipe(
-        ofType(PurchasedActions.PURCHASE_PURCHASED_GLOCERIES),
-        switchMap((data: PurchasedActions.PurchasedGloceries) => {
+    purchasedGroceries = this.actions$.pipe(
+        ofType(PurchasedActions.PURCHASE_PURCHASED_GROCERIES),
+        switchMap((data: PurchasedActions.PurchasedGroceries) => {
             return this.http.post<GroceryItem[]>(
                 `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/purchased`, 
                 data.payload,
@@ -26,7 +26,7 @@ export class PurchasedGloceryEffect {
             )
             .pipe(
                 map(() => {
-                    return new PurchasedActions.DeletePurchasedGloceries();
+                    return new PurchasedActions.DeletePurchasedGroceries();
                 }),
                 catchError((err) => {
                     console.log(err);

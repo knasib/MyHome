@@ -3,35 +3,35 @@ import { Subject } from "rxjs";
 import { GroceryItem } from "../models/grocery.item.model";
 
 export class PurchasedGroceryService {
-    changedGloceries = new Subject<GroceryItem[]>();
+    changedGroceries = new Subject<GroceryItem[]>();
 
-    private gloceries: GroceryItem[] = [
+    private Groceries: GroceryItem[] = [
         new GroceryItem('Chicken', 230, 1, 'Kg'),
         new GroceryItem('Meat', 230, 1, 'Kg'),
         new GroceryItem('Atta', 53, 1, 'Kg'),
     ];
 
     getPurchasedItems() {
-        return this.gloceries.slice();
+        return this.Groceries.slice();
     }
 
     getPurchasedItem(index: number) {
-        return this.gloceries[index];
+        return this.Groceries[index];
     }
 
     addToPurchasedList(item: GroceryItem) {
         
-        this.gloceries.push(item);
-        this.changedGloceries.next(this.gloceries.slice());
+        this.Groceries.push(item);
+        this.changedGroceries.next(this.Groceries.slice());
     }
 
     removeFromPurchasedList(index: number) {
-        this.gloceries.splice(index, 1);
-        this.changedGloceries.next(this.gloceries.slice());
+        this.Groceries.splice(index, 1);
+        this.changedGroceries.next(this.Groceries.slice());
     }
 
     updatePurchasedItem(index: number, updatedItem: GroceryItem) {
-        this.gloceries[index] = updatedItem;
-        this.changedGloceries.next(this.gloceries.slice());
+        this.Groceries[index] = updatedItem;
+        this.changedGroceries.next(this.Groceries.slice());
     }
 }

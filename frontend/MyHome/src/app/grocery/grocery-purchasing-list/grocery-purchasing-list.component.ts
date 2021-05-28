@@ -16,7 +16,7 @@ import * as purchasedActions from '../grocery-purchased-list/store/grocery-purch
   styleUrls: ['./grocery-purchasing-list.component.css']
 })
 export class GroceryPurchasingListComponent implements OnInit {
-  purchasingGloceries: GroceryItem[];
+  purchasingGroceries: GroceryItem[];
   subscription: Subscription;
   addGroceryForm: FormGroup;
 
@@ -24,17 +24,17 @@ export class GroceryPurchasingListComponent implements OnInit {
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    /*this.subscription = this.purchasingGroceryService.changeGloceries
-      .subscribe((gloceries: GroceryItem[]) => {
-        this.purchasingGrocery = gloceries;
+    /*this.subscription = this.purchasingGroceryService.changeGroceries
+      .subscribe((Groceries: GroceryItem[]) => {
+        this.purchasingGrocery = Groceries;
       })
     this.purchasingGrocery = this.purchasingGroceryService.getPurchasingItems();*/
     
-    this.store.dispatch(new purchasingActions.GetPurchasingGloceries());
+    this.store.dispatch(new purchasingActions.GetPurchasingGroceries());
 
-    this.subscription = this.store.select("purchasingGloceries").subscribe((purchasingGloceriesState) => {
-      this.purchasingGloceries = purchasingGloceriesState.gloceries;
-      console.log("From component" + this.purchasingGloceries);
+    this.subscription = this.store.select("purchasingGroceries").subscribe((purchasingGroceriesState) => {
+      this.purchasingGroceries = purchasingGroceriesState.Groceries;
+      console.log("From component" + this.purchasingGroceries);
     });
 
     this.initForm();
@@ -56,13 +56,13 @@ export class GroceryPurchasingListComponent implements OnInit {
   }
 
   purchaseAll() {
-    let gloceries = [];
-    this.purchasingGloceries.forEach((item) => {
+    let Groceries = [];
+    this.purchasingGroceries.forEach((item) => {
       let newItem = {...item};
       newItem.purchaseDate = new Date();
-      gloceries.push(newItem);
+      Groceries.push(newItem);
     });
-    this.store.dispatch(new purchasedActions.AddToPurchasedList(gloceries));
+    this.store.dispatch(new purchasedActions.AddToPurchasedList(Groceries));
     this.store.dispatch(new purchasingActions.EmptyList());
   }
 

@@ -11,8 +11,8 @@ export interface AppState {
     signup: signUpReducer.State;
     login: loginReducer.State;
     members: membersReducer.State;
-    purchasingGloceries: purchasingGroceryReducer.State;
-    purchasedGloceries: purchasedGroceryReducer.State;
+    purchasingGroceries: purchasingGroceryReducer.State;
+    purchasedGroceries: purchasedGroceryReducer.State;
     dougnutchart: doughnutChartReducer.State;
 }
 
@@ -20,7 +20,7 @@ export const appReducer: ActionReducerMap<AppState> = {
     signup: signUpReducer.signUpReducer,
     login: loginReducer.loginReducer,
     members: membersReducer.membersReducer,
-    purchasingGloceries: purchasingGroceryReducer.gloceryPurchasingReducer,
-    purchasedGloceries: purchasedGroceryReducer.gloceryPurchasedReducer,
+    purchasingGroceries: purchasingGroceryReducer.gloceryPurchasingReducer,
+    purchasedGroceries: purchasedGroceryReducer.gloceryPurchasedReducer,
     dougnutchart: doughnutChartReducer.doughnutChartReducer,
 }

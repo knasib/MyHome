@@ -12,14 +12,14 @@ export class PurchasingGloceryEffect {
 
     @Effect()
     getItems = this.actions$.pipe(
-        ofType(actions.GET_PURCHASING_GLOCERIES),
-        switchMap((data: actions.GetPurchasingGloceries) => {
+        ofType(actions.GET_PURCHASING_GROCERIES),
+        switchMap((data: actions.GetPurchasingGroceries) => {
             return this.http.get<GroceryItem[]>(
                 `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/purchasing`
                 )
                 .pipe(
                     map((items) => {
-                        return new actions.SetPurchasingGloceries(items);
+                        return new actions.SetPurchasingGroceries(items);
                     })
                 )
         })

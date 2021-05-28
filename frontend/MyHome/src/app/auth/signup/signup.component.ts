@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import * as signUpActions from './store/signup.actions';
+import * as loginActions from '../login/store/login.actions';
 import * as fromApp from '../../store/app.reducer';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   constructor(private store:Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-
+    this.store.dispatch(new loginActions.ClearLoginError());
     this.subscription = this.store.select("signup").subscribe(signupState=> {
       this.error = signupState.error;
       this.loading = signupState.loading;

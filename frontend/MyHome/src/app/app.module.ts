@@ -38,6 +38,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SignUpEffects } from './auth/signup/store/signup.effects';
 import { LoginEffect } from './auth/login/store/login.effects';
+import { PurchasedGloceryEffect } from './grocery/grocery-purchased-list/store/grocery-purchased.effects';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,12 @@ import { LoginEffect } from './auth/login/store/login.effects';
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
     HttpClientModule,
-    EffectsModule.forRoot([MembersEffects, SignUpEffects, LoginEffect])
+    EffectsModule.forRoot([
+      SignUpEffects, 
+      LoginEffect,
+      MembersEffects, 
+      PurchasedGloceryEffect
+    ])
   ],
   providers: [
     MemberService,

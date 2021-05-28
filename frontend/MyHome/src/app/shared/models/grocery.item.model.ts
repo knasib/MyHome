@@ -5,6 +5,7 @@ export class GroceryItem {
         public price: number,
         public quantity: number,
         public quantityUnit: string,
+        public category?: string,
         public purchaseDate?: Date) {
     }
 }

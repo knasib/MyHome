@@ -6,7 +6,7 @@ export interface State {
 }
 
 const initialState: State = {
-    gloceries: [new GroceryItem('Chicken', 230, 1, 'Kg')]
+    gloceries: []
 };
 
 export function gloceryPurchasingReducer(state = initialState, action: actions.GroceryPurchasingItemsAction) {

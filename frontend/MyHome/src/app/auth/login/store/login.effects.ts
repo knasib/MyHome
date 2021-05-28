@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, Effect, ofType } from "@ngrx/effects";
@@ -19,7 +19,12 @@ export class LoginEffect {
         ofType(LoginActions.START_LOGIN),
         switchMap((loginStartAction: LoginActions.StartLogin) => {
                 return this.http.post<User>(`${env.environment.baseUrl}/login`, 
-                loginStartAction.payload
+                loginStartAction.payload,
+                {
+                    headers: new HttpHeaders({
+                        'Content-Type': 'application/json'
+                    })
+                }
             )
             .pipe(
                 tap(user => {

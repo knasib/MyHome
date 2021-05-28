@@ -42,7 +42,8 @@ export class GroceryPurchasingListComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       quantity: new FormControl(1, Validators.required),
       price: new FormControl(100, Validators.required),
-      quantityUnit: new FormControl('Kg', Validators.required)
+      quantityUnit: new FormControl('Kg', Validators.required),
+      category: new FormControl("OTHERS")
     });
   }
 
@@ -58,7 +59,7 @@ export class GroceryPurchasingListComponent implements OnInit {
       newItem.purchaseDate = new Date();
       gloceries.push(newItem);
     });
-    this.store.dispatch(new purchasedActions.PurchasedGloceries(gloceries));
+    this.store.dispatch(new purchasedActions.AddToPurchasedList(gloceries));
     this.store.dispatch(new purchasingActions.PurchasePurchasingGloceries());
   }
 

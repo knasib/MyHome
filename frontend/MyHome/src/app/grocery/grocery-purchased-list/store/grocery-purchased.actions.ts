@@ -7,7 +7,13 @@ export const ADD_PURCHASED_GLOCERY = "[grocery] Add grocery Purchased item";
 export const UPDATE_PURCHASED_GLOCERY = "[grocery] Update grocery Purchased item";
 export const DELETE_PURCHASED_GLOCERY = "[grocery] Delete grocery Purchased item";
 export const DELETE_PURCHASED_GLOCERIES = "[grocery] Delete grocery Purchased items";
+export const ADD_TO_PURCHASED_LIST = "[grocery] Add to Purchase List";
 
+export class AddToPurchasedList implements Action {
+    readonly type = ADD_TO_PURCHASED_LIST;
+    constructor(public payload: GroceryItem[]) {
+    }
+}
 export class PurchasedGloceries implements Action {
     readonly type = PURCHASE_PURCHASED_GLOCERIES;
     constructor(public payload: GroceryItem[]) {
@@ -34,6 +40,7 @@ export class DeletePurchasedGloceries implements Action {
 }
 
 export type GroceryPurchasedItemsAction = 
+    | AddToPurchasedList
     | PurchasedGloceries
     | GetPurchasedGloceries
     | AddPurchasedGrocery

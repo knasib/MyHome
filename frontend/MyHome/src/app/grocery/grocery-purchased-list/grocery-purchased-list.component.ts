@@ -32,6 +32,10 @@ export class GroceryPurchasedListComponent implements OnInit, OnDestroy {
       });
   }
 
+  purchase() {
+    this.store.dispatch(new actions.PurchasedGloceries(this.purchasedGloceries));
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

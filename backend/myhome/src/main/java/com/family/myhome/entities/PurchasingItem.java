@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-public class PurchasedItem {
+public class PurchasingItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +25,6 @@ public class PurchasedItem {
     private Long quantity;
     private String quantityUnit;
     private String category;
-    private Date purchaseDate;
     private String familyName;
 }
+

@@ -2,7 +2,8 @@
     <div class="col-sm-8">
         <h3>{{purchasedItem.name}} ({{purchasedItem.quantity}}{{purchasedItem.quantityUnit}}) 
         = {{purchasedItem.quantity * purchasedItem.price}} Rs</h3>
-        <p>Purchased On {{purchasedItem.purchaseDate | date: 'fullDate'}}</p>
+        <h5>Category : {{purchasedItem.category }} </h5>
+        <h6>Purchased On {{purchasedItem.purchaseDate | date: 'fullDate'}}</h6>
     </div>
     <div class="col-sm-4">
         <span class="pull-right">

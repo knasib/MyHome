@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, Effect, ofType } from "@ngrx/effects";
@@ -16,7 +16,12 @@ export class SignUpEffects {
         ofType(SignUpActions.START_SIGNUP),
         switchMap((signUpAction: SignUpActions.StartSignUp) => {
             return this.http.post<SignUp>('http://localhost:8080/signup', 
-                signUpAction.payload
+                signUpAction.payload,
+                {
+                    headers: new HttpHeaders({
+                        'Content-Type': 'application/json'
+                    })
+                }
             )
             .pipe(
                 map((_) => {

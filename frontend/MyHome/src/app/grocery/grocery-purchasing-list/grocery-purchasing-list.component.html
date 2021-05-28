@@ -41,6 +41,17 @@
                       </select>
                 </div>
             </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" class="form-control" formControlName="category">
+                        <option value="MEAT">MEAT</option>
+                        <option value="RICEDAAL">RICE DAAL</option>
+                        <option value="PETROL">PETROL</option>
+                        <option value="OTHERS">OTHERS</option>
+                      </select>
+                </div>
+            </div>
             <div class="col-md-1">
                 <label for="add">Action</label>
                 <button class="btn btn-success" type="submit" id="add" [disabled]="!addGroceryForm.valid"> + </button>
@@ -49,5 +60,8 @@
     </div>
 </div>
 <div class="col-md-11" style="margin-top: 5px;">
-    <button class="btn btn-success" style="margin-right: 5px;" (click)="purchaseAll()">Purchase All</button>
+    <button class="btn btn-success" 
+    style="margin-right: 5px;" 
+    type="submit"
+    (click)="purchaseAll()">Add To Purchased List</button>
 </div>

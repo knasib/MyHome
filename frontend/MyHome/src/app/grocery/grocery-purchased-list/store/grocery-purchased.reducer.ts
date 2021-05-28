@@ -11,10 +11,15 @@ const initialState: State = {
 
 export function gloceryPurchasedReducer(state = initialState, action: actions.GroceryPurchasedItemsAction ) {
     switch(action.type) {
-        case actions.PURCHASE_PURCHASED_GLOCERIES:
+        case actions.ADD_TO_PURCHASED_LIST:
             return {
                 ...state,
                 gloceries: [...state.gloceries, ...action.payload]
+            }
+        case actions.PURCHASE_PURCHASED_GLOCERIES:
+            return {
+                ...state,
+                gloceries: []
             }
         case actions.GET_PURCHASED_GLOCERIES:
             return {

@@ -6,4 +6,11 @@
             [id]="i">
         </app-grocery-purchased-item>
     </div>
+
+    <div class="col-md-11">
+        <button class="btn btn-success" 
+        style="margin-right: 5px;" 
+        [disabled] = "purchasedGloceries.length == 0"
+        (click)="purchase()">Purchase ALl</button>
+    </div>
 </div>

@@ -1,0 +1,17 @@
+<a 
+    class="list-group-item clearfix"  
+    [routerLink]="[member.id]"
+    routerLinkActive="active"
+    >
+    <div class="row" class="pull-left">
+        <h4>{{member.name}}  ({{member.gender}})</h4>
+        Age: {{member.age}}
+    </div>
+    <span class="pull-right">
+        <img
+          [src]="member.photoUri"
+          alt="{{ member.name }}"
+          class="img-responsive"
+          style="max-height: 60px;">
+      </span>
+</a>

@@ -1,0 +1,11 @@
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <app-member-item 
+            *ngFor = "let member of members; 
+            let i=index" 
+            [member]='member'
+            [id]='member.id'>
+        </app-member-item>
+    </div>
+</div>

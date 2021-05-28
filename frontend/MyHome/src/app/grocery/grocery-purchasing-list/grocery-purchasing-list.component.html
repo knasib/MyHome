@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-11">
+        <app-grocery-purchasing-item
+            *ngFor="let grocery of purchasingGloceries; let i = index"
+            [purchasingItem]="grocery"
+            [id]="i">
+        </app-grocery-purchasing-item>
+    </div>
+
+</div>
+
+<hr>
+<div class="row  list-group-item-success" style="margin-left: 15px;">
+    <div class="col-md-11">
+        <form [formGroup]="addGroceryForm" (ngSubmit)="addGroceryItem()">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" formControlName="name">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" class="form-control" formControlName="price">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="quantity">Quantiy</label>
+                    <input type="number" id="quantity" class="form-control" formControlName="quantity">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="unit">Unit</label>
+                    <select id="unit" class="form-control" formControlName="quantityUnit">
+                        <option value="Kg">Kg</option>
+                        <option value="Lt">Lt</option>
+                        <option value="Pc">Pc</option>
+                      </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <label for="add">Action</label>
+                <button class="btn btn-success" type="submit" id="add" [disabled]="!addGroceryForm.valid"> + </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-md-11" style="margin-top: 5px;">
+    <button class="btn btn-success" style="margin-right: 5px;" (click)="purchaseAll()">Purchase All</button>
+</div>

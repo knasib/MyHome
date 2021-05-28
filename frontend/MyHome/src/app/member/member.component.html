@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-primary" (click)="navigateAddMember()">Add Member</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <app-member-list></app-member-list>
+        </div>
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

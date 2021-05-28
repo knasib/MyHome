@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="memberForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" formControlName="name" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="photoUri">Image</label>
+                        <input type="text" id="photoUri" formControlName="photoUri" class="form-control" #photoUri>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img [src]="photoUri.value" class="img-responsive" style="max-height: 300px;">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="emailId">Email ID</label>
+                        <input type="text" id="emailId" formControlName="emailId" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="panNumber">PAN Number</label>
+                        <input type="text" id="panNumber" formControlName="panNumber" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="adharNumber">Aadhar Number</label>
+                        <input type="text" id="adharNumber" formControlName="adharNumber" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="text" id="mobileNumber" formControlName="mobileNumber" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="dob">Date Of Birth</label>
+                        <input type="date" id="dob" 
+                        formControlName="dob" 
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="radio" id="male" name="gender" value="M" formControlName="gender">
+                        <label for="male" style="margin-left: 10px;">Male</label><br>
+                        <input type="radio" id="female" name="gender" value="F" formControlName="gender">
+                        <label for="female" style="margin-left: 10px;">Female</label><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-success" type="submit" 
+                    [disabled]="!memberForm.valid">Save Member</button>
+                    <button class="btn btn-danger" 
+                    style="margin-left: 10px;" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -4,6 +4,8 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/Operators';
 import { Member } from 'src/app/shared/models/member.model';
 
+
+import * as env from '../../../environments/environment';
 import * as MembersActions from './members.actions';
 
 @Injectable()
@@ -14,7 +16,7 @@ export class MembersEffects {
         ofType(MembersActions.GET_MEMBERS),
         switchMap(() => {
             return this.http.get<Member[]>(
-                `http://localhost:8080/families/${localStorage.getItem("familyName")}/members`
+                `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/members`
                 );
         }),
         map((members) => {
@@ -27,7 +29,7 @@ export class MembersEffects {
         ofType(MembersActions.ADD_MEMBER),
         switchMap((data: MembersActions.AddMember) => {
             return this.http.post<Member>(
-                `http://localhost:8080/families/${localStorage.getItem("familyName")}/members`, 
+                `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/members`, 
                 data.payload, 
                 {
                     headers: new HttpHeaders({
@@ -46,7 +48,7 @@ export class MembersEffects {
         ofType(MembersActions.UPDATE_MEMBER),
         switchMap((data: MembersActions.UpdateMember) => {
             return this.http.put<Member>(
-                `http://localhost:8080/families/${localStorage.getItem("familyName")}/members/${data.payload.id}`, 
+                `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/members/${data.payload.id}`, 
                 data.payload.newMember, 
                 {
                     headers: new HttpHeaders({
@@ -65,7 +67,7 @@ export class MembersEffects {
         ofType(MembersActions.DELETE_MEMBER),
         switchMap((data: MembersActions.DeleteMember) => {
             return this.http.delete<Member[]>(
-                `http://localhost:8080/families/${localStorage.getItem("familyName")}/members/${data.payload}`
+                `${env.environment.baseUrl}/families/${localStorage.getItem("familyName")}/members/${data.payload}`
                 )
         }),
         map((members) => {

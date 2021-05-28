@@ -29,9 +29,12 @@ export class GroceryPurchasingListComponent implements OnInit {
         this.purchasingGrocery = gloceries;
       })
     this.purchasingGrocery = this.purchasingGroceryService.getPurchasingItems();*/
+    
+    this.store.dispatch(new purchasingActions.GetPurchasingGloceries());
 
     this.subscription = this.store.select("purchasingGloceries").subscribe((purchasingGloceriesState) => {
       this.purchasingGloceries = purchasingGloceriesState.gloceries;
+      console.log("From component" + this.purchasingGloceries);
     });
 
     this.initForm();
@@ -60,7 +63,7 @@ export class GroceryPurchasingListComponent implements OnInit {
       gloceries.push(newItem);
     });
     this.store.dispatch(new purchasedActions.AddToPurchasedList(gloceries));
-    this.store.dispatch(new purchasingActions.PurchasePurchasingGloceries());
+    this.store.dispatch(new purchasingActions.EmptyList());
   }
 
   ngOnDestroy(): void {

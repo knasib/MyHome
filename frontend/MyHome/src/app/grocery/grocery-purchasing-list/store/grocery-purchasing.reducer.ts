@@ -11,7 +11,7 @@ const initialState: State = {
 
 export function gloceryPurchasingReducer(state = initialState, action: actions.GroceryPurchasingItemsAction) {
     switch(action.type) {
-        case actions.PURCHASE_PURCHASING_GLOCERIES:
+        case actions.EMPTY_LIST:
             return {
                 gloceries: []
             }
@@ -19,6 +19,11 @@ export function gloceryPurchasingReducer(state = initialState, action: actions.G
             return {
                 ...state
             }
+        case actions.SET_PURCHASING_GLOCERIES :
+            return {
+                ...state,
+                gloceries: action.payload
+            }   
         case actions.ADD_PURCHASING_GLOCERY:
             return {
                 ...state,

@@ -1,17 +1,22 @@
 import { Action } from "@ngrx/store";
 import { GroceryItem } from "src/app/shared/models/grocery.item.model";
 
-export const PURCHASE_PURCHASING_GLOCERIES = "[grocery] PURCHASE grocery Purchasing items";
+export const EMPTY_LIST = "[grocery] Empty list";
 export const GET_PURCHASING_GLOCERIES = "[grocery] Get grocery Purchasing items";
+export const SET_PURCHASING_GLOCERIES = "[grocery] Set grocery Purchasing items";
 export const ADD_PURCHASING_GLOCERY = "[grocery] Add grocery Purchasing item";
 export const UPDATE_PURCHASING_GLOCERY = "[grocery] Update grocery Purchasing item";
 export const DELETE_PURCHASING_GLOCERY = "[grocery] Delete grocery Purchasing item";
 
-export class PurchasePurchasingGloceries implements Action {
-    readonly type = PURCHASE_PURCHASING_GLOCERIES;
+export class EmptyList implements Action {
+    readonly type = EMPTY_LIST;
 }
 export class GetPurchasingGloceries implements Action {
     readonly type = GET_PURCHASING_GLOCERIES;
+}
+export class SetPurchasingGloceries implements Action {
+    readonly type = SET_PURCHASING_GLOCERIES;
+    constructor(public payload: GroceryItem[]){}
 }
 export class AddPurchasingGrocery implements Action {
     readonly type = ADD_PURCHASING_GLOCERY;
@@ -27,8 +32,9 @@ export class DeletePurchasingGrocery implements Action {
 }
 
 export type GroceryPurchasingItemsAction = 
-    | PurchasePurchasingGloceries
+    | EmptyList
     | GetPurchasingGloceries
+    | SetPurchasingGloceries
     | AddPurchasingGrocery
     | UpdatePurchasingGrocery
     | DeletePurchasingGrocery;

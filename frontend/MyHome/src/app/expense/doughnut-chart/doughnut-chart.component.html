@@ -1,0 +1,9 @@
+<div class="chart-wrapper"  style="display: block; height: 300px;"
+*ngIf="doughnutChartLabels.length != 0 && doughnutChartData.length != 0">
+    <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [options]="doughnutChartOpitons"
+        [chartType]="doughnutChartType">
+  </canvas>
+</div>

@@ -39,6 +39,11 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SignUpEffects } from './auth/signup/store/signup.effects';
 import { LoginEffect } from './auth/login/store/login.effects';
 import { PurchasedGloceryEffect } from './grocery/grocery-purchased-list/store/grocery-purchased.effects';
+import { PurchasingGloceryEffect } from './grocery/grocery-purchasing-list/store/grocery-purchasing.effects';
+import { ChartsModule } from 'ng2-charts';
+import { MonthlyBarchartComponent } from './expense/monthly-barchart/monthly-barchart.component';
+import { DoughnutChartComponent } from './expense/doughnut-chart/doughnut-chart.component';
+import { DoughnutChartEffect } from './expense/doughnut-chart/store/doughnut-chart.effects';
 
 @NgModule({
   declarations: [
@@ -61,20 +66,25 @@ import { PurchasedGloceryEffect } from './grocery/grocery-purchased-list/store/g
     GroceryPurchasingItemComponent,
     AuthComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    MonthlyBarchartComponent,
+    DoughnutChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    StoreModule.forRoot(fromApp.appReducer),
     HttpClientModule,
+    ChartsModule,
+    StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([
       SignUpEffects, 
       LoginEffect,
       MembersEffects, 
-      PurchasedGloceryEffect
+      PurchasedGloceryEffect,
+      PurchasingGloceryEffect,
+      DoughnutChartEffect
     ])
   ],
   providers: [

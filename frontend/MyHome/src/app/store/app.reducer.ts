@@ -4,6 +4,7 @@ import * as purchasingGroceryReducer from '../grocery/grocery-purchasing-list/st
 import * as purchasedGroceryReducer from '../grocery/grocery-purchased-list/store/grocery-purchased.reducer';
 import * as signUpReducer from '../auth/signup/store/signup.reducer';
 import * as loginReducer from '../auth/login/store/login.reducer';
+import * as doughnutChartReducer from '../expense/doughnut-chart/store/doughnut-chart.reducer';
 
 
 export interface AppState {
@@ -12,6 +13,7 @@ export interface AppState {
     members: membersReducer.State;
     purchasingGloceries: purchasingGroceryReducer.State;
     purchasedGloceries: purchasedGroceryReducer.State;
+    dougnutchart: doughnutChartReducer.State;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
@@ -19,5 +21,6 @@ export const appReducer: ActionReducerMap<AppState> = {
     login: loginReducer.loginReducer,
     members: membersReducer.membersReducer,
     purchasingGloceries: purchasingGroceryReducer.gloceryPurchasingReducer,
-    purchasedGloceries: purchasedGroceryReducer.gloceryPurchasedReducer
+    purchasedGloceries: purchasedGroceryReducer.gloceryPurchasedReducer,
+    dougnutchart: doughnutChartReducer.doughnutChartReducer,
 }

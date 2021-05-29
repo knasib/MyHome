@@ -9,23 +9,23 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping(path = "/families")
 public class FamilyResource {
     @Autowired
     FamilyService familyService;
 
-    @PostMapping(path = "/families",
-            consumes = "application/json",
+    @PostMapping(consumes = "application/json",
             produces = "application/json")
     public Family addNewFamily(@RequestBody Family newFamily) {
         return familyService.addNewFamily(newFamily);
     }
 
-    @GetMapping("/families")
+    @GetMapping()
     public List<Family> getFamilies() {
         return familyService.getFamilies();
     }
 
-    @GetMapping("/families/{familyid}")
+    @GetMapping("/{familyid}")
     public Family getFamilies(@PathVariable(name="familyid") Long familyId) {
         return familyService.getFamily(familyId);
     }

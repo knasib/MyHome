@@ -12,6 +12,7 @@ import java.util.*;
 
 @Service
 public class ChartDataService {
+    private static final String YYYY_MM_DD = "yyyy-MM-dd";
     @Autowired
     PurchasedItemRepository repository;
 
@@ -23,7 +24,7 @@ public class ChartDataService {
         } else {
             String date = "" + yearMonth + "-" + "01";
             try {
-                start = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                start = new SimpleDateFormat(YYYY_MM_DD).parse(date);
             } catch (ParseException e) {
                 throw new RuntimeException("Invalid Request");
             }

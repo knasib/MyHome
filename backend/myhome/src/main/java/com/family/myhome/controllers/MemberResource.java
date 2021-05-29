@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping(path = "/families/{familyName}/members")
 public class MemberResource {
 
     @Autowired
@@ -20,20 +21,19 @@ public class MemberResource {
     @Autowired
     MemberService memberService;
 
-    @GetMapping("/families/{familyName}/members/{memberid}")
+    @GetMapping("/{memberid}")
     public Member getMember(@PathVariable String familyName,
                             @PathVariable Long memberid) {
         return memberService.getMember(familyName, memberid);
     }
 
-    @PostMapping(path = "/families/{familyName}/members",
-            consumes = "application/json",
+    @PostMapping(consumes = "application/json",
             produces = "application/json")
     public Member addMember(@PathVariable String familyName, @RequestBody Member newMember) {
         return memberService.addMember(familyName, newMember);
     }
 
-    @PutMapping(path = "/families/{familyName}/members/{memberid}",
+    @PutMapping(path = "/{memberid}",
             consumes = "application/json",
             produces = "application/json")
     public Member updateMember(@PathVariable String familyName,
@@ -42,7 +42,7 @@ public class MemberResource {
         return memberService.updateMember(familyName, memberid, newMember);
     }
 
-    @DeleteMapping(path="/families/{familyName}/members/{memberid}")
+    @DeleteMapping(path="/{memberid}")
     public ResponseEntity<Member> deleteMember(@PathVariable Long memberid) {
         final boolean status = memberService.deleteMember(memberid);
         if(!status) {
@@ -51,7 +51,7 @@ public class MemberResource {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/families/{familyName}/members")
+    @GetMapping("")
     public List<Member> getMembers(@PathVariable String familyName) {
         return memberService.getMembers(familyName);
     }

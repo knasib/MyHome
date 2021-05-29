@@ -1,17 +1,12 @@
 <div class="row">
-    <div class="col-sm-12">
-        <app-grocery-purchasing-item
-            *ngFor="let grocery of purchasingGroceries; let i = index"
-            [purchasingItem]="grocery"
-            [id]="i">
-        </app-grocery-purchasing-item>
+    <div class="col-sm-12" style="margin-bottom: 5px;">
+        <button class="btn btn-success pull-right" 
+        type="submit"
+        (click)="purchaseAll()">Add To the Cart</button>
     </div>
-
 </div>
-
-<hr>
-<div class="row list-group-item-success">
-    <div class="col-sm-12">
+<div class="col-sm-12">
+    <div class="row list-group-item-success">
         <form [formGroup]="addGroceryForm" (ngSubmit)="addGroceryItem()">
             <div class="col-sm-3">
                 <div class="form-group">
@@ -60,9 +55,17 @@
         </form>
     </div>
 </div>
-<div class="col-sm-12" style="margin-top: 5px;">
-    <button class="btn btn-success" 
-    style="margin-right: 5px;" 
-    type="submit"
-    (click)="purchaseAll()">Add To Purchased List</button>
+<div class="row">
+    <div class="col-sm-12">
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 scraller">
+        <app-grocery-purchasing-item
+            *ngFor="let grocery of purchasingGroceries; let i = index"
+            [purchasingItem]="grocery"
+            [id]="i">
+        </app-grocery-purchasing-item>
+    </div>
 </div>

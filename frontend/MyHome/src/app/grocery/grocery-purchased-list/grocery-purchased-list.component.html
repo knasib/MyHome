@@ -1,15 +1,18 @@
 <div class="row">
     <div class="col-sm-12">
+        <button class="btn btn-success pull-right" 
+        style="margin-right: 5px;" 
+        [disabled] = "purchasedGroceries.length == 0"
+        (click)="purchase()">Purchase Now</button>
+    </div>
+    <div class="col-sm-12">
+        <hr>
+    </div>
+    <div class="col-sm-12 scraller">
         <app-grocery-purchased-item
             *ngFor="let grocery of purchasedGroceries; let i = index"
             [purchasedItem]="grocery"
             [id]="i">
         </app-grocery-purchased-item>
-    </div>
-    <div class="col-sm-12" style="margin-top: 15px;">
-        <button class="btn btn-success" 
-        style="margin-right: 5px;" 
-        [disabled] = "purchasedGroceries.length == 0"
-        (click)="purchase()">Purchase ALL</button>
     </div>
 </div>

@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@RequestMapping(path = "/families/{familyname}/charts")
 public class ChartDataResource {
 
     @Autowired
     ChartDataService service;
 
-    @GetMapping("/families/{familyname}/charts/doughnut")
+    @GetMapping("/doughnut")
     public ChartData getDoughnut(@PathVariable String familyname,
                                  @RequestParam(required = false) String yearmonth) {
         return service.getDoughnutDataASpecificMonth(familyname, yearmonth);
     }
 
-    @GetMapping("/families/{familyname}/charts/barchart")
+    @GetMapping("/barchart")
     public ChartData getBarchart(@PathVariable String familyname) {
         return service.getBarChartDataForCurrentYear(familyname);
     }

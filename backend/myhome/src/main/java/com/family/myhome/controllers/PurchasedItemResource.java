@@ -9,17 +9,18 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping(path = "/families/{familyname}/purchased")
 public class PurchasedItemResource {
 
     @Autowired
     PurchasedItemService service;
 
-    @GetMapping("/families/{familyname}/purchased")
+    @GetMapping()
     public List<PurchasedItem> getItems(@PathVariable String familyname) {
         return service.getPurchasedItemList(familyname);
     }
 
-    @PostMapping("/families/{familyname}/purchased")
+    @PostMapping()
     public void addItems(@PathVariable String familyname,
                          @RequestBody List<PurchasedItem> items) {
         service.saveItems(familyname, items);

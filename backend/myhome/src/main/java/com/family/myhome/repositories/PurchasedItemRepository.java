@@ -13,4 +13,8 @@ public interface PurchasedItemRepository extends JpaRepository<PurchasedItem, Lo
     List<PurchasedItem> findAllByFamilyNameAndPurchaseDateBetweenOrderByCategory(String familyName,
                                                                                  Date start,
                                                                                  Date end);
+
+    List<PurchasedItem> findAllByFamilyNameAndPurchaseDateBetweenOrderByPurchaseDateAsc(String familyName,
+                                                                                 Date start,
+                                                                                 Date end);
 }

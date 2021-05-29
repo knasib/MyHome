@@ -44,6 +44,7 @@ import { ChartsModule } from 'ng2-charts';
 import { MonthlyBarchartComponent } from './expense/monthly-barchart/monthly-barchart.component';
 import { DoughnutChartComponent } from './expense/doughnut-chart/doughnut-chart.component';
 import { DoughnutChartEffect } from './expense/doughnut-chart/store/doughnut-chart.effects';
+import { BarChartEffect } from './expense/monthly-barchart/store/bar-chart.effects';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { DoughnutChartEffect } from './expense/doughnut-chart/store/doughnut-cha
       MembersEffects, 
       PurchasedGloceryEffect,
       PurchasingGloceryEffect,
-      DoughnutChartEffect
+      DoughnutChartEffect,
+      BarChartEffect
     ])
   ],
   providers: [

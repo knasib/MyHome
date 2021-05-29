@@ -17,7 +17,7 @@ export class DoughnutChartComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   doughnutChartOpitons: ChartOptions = {
-    //responsive: true,
+    responsive: true,
     maintainAspectRatio: false
   }
   doughnutChartLabels: Label[] = [];
@@ -31,8 +31,6 @@ export class DoughnutChartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(new ChartActions.GetDoughnutChartData());
     this.subscription = this.store.select("dougnutchart").subscribe((chartData) => {
-      console.log(chartData.labels);
-      console.log(chartData.data);
       this.doughnutChartLabels = chartData.labels;
       this.doughnutChartData = [chartData.data];
 

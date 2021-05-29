@@ -6,6 +6,8 @@ import com.family.myhome.repositories.PurchasedItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -13,16 +15,24 @@ public class ChartDataService {
     @Autowired
     PurchasedItemRepository repository;
 
-    public ChartData getDoughnut(String familyName) {
-        Date end = new Date();
-        Date start = new Date(end.getYear(), end.getMonth(), 1);
+    public ChartData getDoughnutDataASpecificMonth(String familyName, String yearMonth) {
+        Date end, start;
+        if(yearMonth == null || yearMonth.isEmpty()) {
+            end = new Date();
+            start = new Date(end.getYear(), end.getMonth(), 1);
+        } else {
+            String date = "" + yearMonth + "-" + "01";
+            try {
+                start = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            } catch (ParseException e) {
+                throw new RuntimeException("Invalid Request");
+            }
+            end = new Date(start.getYear(), start.getMonth()+1, 01);
+        }
         final List<PurchasedItem> list = repository.findAllByFamilyNameAndPurchaseDateBetweenOrderByCategory(
                 familyName, start, end);
-
         Map<String, Double> tempMap = new HashMap<>();
-
         list.forEach((item) -> {
-
             if(tempMap.containsKey(item.getCategory())) {
                 tempMap.put(item.getCategory(), tempMap.get(item.getCategory()) + item.getPrice());
             } else {
@@ -34,6 +44,33 @@ public class ChartDataService {
                 .labels(tempMap.keySet())
                 .data(tempMap.values())
                 .build();
+    }
+
+    public ChartData getBarChartDataForCurrentYear(String familyName) {
+        Date end = new Date();
+        Date start = new Date(end.getYear(), Calendar.JANUARY, 1);
+        final List<PurchasedItem> list = repository.findAllByFamilyNameAndPurchaseDateBetweenOrderByPurchaseDateAsc(
+                familyName, start, end);
+        Map<String, Double> tempMap = new LinkedHashMap<>();
+        list.forEach((item) -> {
+            String key = this.createKey(item);
+
+            if(tempMap.containsKey(key)) {
+                tempMap.put(key, tempMap.get(key) + item.getPrice());
+            } else {
+                tempMap.put(key, item.getPrice());
+            }
+        });
+
+        return ChartData.builder()
+                .labels(tempMap.keySet())
+                .data(tempMap.values())
+                .build();
+    }
+
+    private String createKey(PurchasedItem item) {
+        return "" + (1900 + item.getPurchaseDate().getYear()) + "-"
+                + String.format("%02d",item.getPurchaseDate().getMonth() + 1);
     }
 
 }

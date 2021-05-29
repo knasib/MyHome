@@ -1,1 +1,12 @@
-<p>monthly-barchart works!</p>
+<div class="chart-wrapper" style="cursor: pointer;" 
+*ngIf="barChartLabels.length != 0">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+    (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

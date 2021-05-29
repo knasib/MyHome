@@ -1,4 +1,4 @@
-import * as ChartActions from './doughnut-chart.actions';
+import * as ChartActions from './bar-chart.actions';
 
 
 export interface State {
@@ -11,17 +11,17 @@ const initialState: State = {
     data: []
 }
 
-export function doughnutChartReducer(state: State = initialState, 
-    action: ChartActions.DoughnutActions) {
+export function barChartReducer(state: State = initialState, 
+    action: ChartActions.BarActions) {
 
     switch(action.type) {
-        case ChartActions.SET_CURR_MONTH_DOUGHNUT_CHARTDATA:
+        case ChartActions.SET_CURR_YEAR_BAR_CHARTDATA:
             return {
                 ...state,
                 labels: action.payload.labels,
                 data: action.payload.data
             }
-        case ChartActions.CLEAR_DOUGHNUT_CHARTDATA:
+        case ChartActions.CLEAR_BAR_CHARTDATA:
             return {
                 ...state,
                 labels: [],

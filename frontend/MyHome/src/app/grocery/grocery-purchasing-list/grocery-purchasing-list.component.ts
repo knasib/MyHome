@@ -34,7 +34,6 @@ export class GroceryPurchasingListComponent implements OnInit {
 
     this.subscription = this.store.select("purchasingGroceries").subscribe((purchasingGroceriesState) => {
       this.purchasingGroceries = purchasingGroceriesState.Groceries;
-      console.log("From component" + this.purchasingGroceries);
     });
 
     this.initForm();

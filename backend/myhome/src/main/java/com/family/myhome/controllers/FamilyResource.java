@@ -25,8 +25,8 @@ public class FamilyResource {
         return familyService.getFamilies();
     }
 
-    @GetMapping("/{familyid}")
-    public Family getFamilies(@PathVariable(name="familyid") Long familyId) {
-        return familyService.getFamily(familyId);
+    @GetMapping("/{familyname}")
+    public Family getFamilies(@PathVariable(name="familyname") String familyname) {
+        return familyService.getFamily(familyname);
     }
 }

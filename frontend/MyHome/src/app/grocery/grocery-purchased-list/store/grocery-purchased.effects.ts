@@ -29,7 +29,6 @@ export class PurchasedGloceryEffect {
                     return new PurchasedActions.DeletePurchasedGroceries();
                 }),
                 catchError((err) => {
-                    console.log(err);
                     return of(new PurchasedActions.AddToPurchasedList(data.payload));
                 })
             )

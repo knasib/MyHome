@@ -19,6 +19,7 @@ export function signUpReducer(state: State = initalState, action : SignUpActions
                 error: null,
                 loading: true
             }
+        case SignUpActions.CREATE_FAMILY:    
         case SignUpActions.SIGNUP_SUCCESS:
             return {
                 ...state,

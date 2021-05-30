@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity//(name="FAMILY")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,9 +24,4 @@ public class Family {
     @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL},mappedBy = "family")
     @JsonIgnore
     private Collection<Member> members;
-
-    /*@OneToOne(mappedBy = "family")
-    @Transient
-    @JsonIgnore
-    private SignUp signUp;*/
 }

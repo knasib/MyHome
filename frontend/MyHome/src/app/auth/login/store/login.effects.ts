@@ -35,7 +35,6 @@ export class LoginEffect {
                     return new LoginActions.SuccessLogin(user);
                 }),
                 catchError(error => {
-                    console.log(error.error.errorMessage);
                     return of(new LoginActions.FailedLogin(error.error.errorMessage));
                 })
             )
@@ -48,7 +47,7 @@ export class LoginEffect {
         ofType(LoginActions.LOGIN_SUCCESS),
         tap((loginAction: LoginActions.SuccessLogin) => {
             localStorage.setItem("user", JSON.stringify(loginAction.payload));
-            localStorage.setItem("familyName", JSON.stringify(loginAction.payload.familyName));
+            localStorage.setItem("familyName", loginAction.payload.familyName);
             this.loginService.setLogoutTimer(new Date(loginAction.payload.expiryAt).getTime() - new Date().getTime());
             this.router.navigate(["/members"]);
         })

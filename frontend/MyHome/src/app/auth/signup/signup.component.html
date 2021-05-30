@@ -1,10 +1,19 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <form [formGroup]="signUp" (ngSubmit)="submit()">
+            <div class="alert alert-danger" *ngIf="!!error">
+                <h4>{{ error }}</h4>
+            </div>
             <div class="form-group">
                 <label for="name">Family Name</label>
                 <input type="text" id="familyName" formControlName="familyName" class="form-control">
             </div>
+            <span class="help-block" *ngIf="signUp.get('familyName').errors != null && 
+            signUp.get('familyName').errors['forbiddenFamilyName'] === true">
+                <small class="text-danger">
+                        Family Name needs to be created
+                </small>  
+            </span>
             <div class="form-group">
                 <label for="name">UserId</label>
                 <input type="text" id="userId" formControlName="userId" class="form-control">
@@ -20,7 +29,12 @@
             <div>
                 <button class="btn btn-success" type="submit" [disabled]="!signUp.valid">Sign Up</button>
                 |
-                <button class="btn btn-danger" (click)="clear()">Clear</button>
+                <button class="btn btn-danger" type="button" (click)="clear()">Clear</button>
+                |
+                <button class="btn btn-primary" type="button" 
+                [disabled] = "!(signUp.get('familyName').errors != null && 
+                signUp.get('familyName').errors['forbiddenFamilyName'] === true)"
+                (click)="createFamily()">Create Family</button>
             </div>
         </form>
     </div>

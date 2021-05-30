@@ -8,6 +8,8 @@ import { SignUp } from "src/app/shared/models/signup.model";
 
 import * as SignUpActions from './signup.actions';
 
+import * as env from '../../../../environments/environment';
+
 
 @Injectable()
 export class SignUpEffects {
@@ -15,7 +17,7 @@ export class SignUpEffects {
     signUp = this.actions$.pipe(
         ofType(SignUpActions.START_SIGNUP),
         switchMap((signUpAction: SignUpActions.StartSignUp) => {
-            return this.http.post<SignUp>('http://localhost:8080/signup', 
+            return this.http.post<SignUp>(`${env.environment.baseUrl}/signup`, 
                 signUpAction.payload,
                 {
                     headers: new HttpHeaders({
@@ -25,12 +27,10 @@ export class SignUpEffects {
             )
             .pipe(
                 map((_) => {
-                    //console.log(resp);
                     return new SignUpActions.SuccessSignUp();
                 }),
                 catchError((errorResp) => {
-                    console.log(errorResp);
-                    return of(new SignUpActions.FailedSignUp("Something went wrong"));
+                    return of(new SignUpActions.FailedSignUp(errorResp.error.errorMessage));
                 })
             )
         })
@@ -43,6 +43,32 @@ export class SignUpEffects {
             this.router.navigate(["/login"]);
         })
     );
+
+    @Effect({dispatch: false})
+    createFamily = this.actions$.pipe(
+        ofType(SignUpActions.CREATE_FAMILY),
+        switchMap((createFanily: SignUpActions.CreateFamily) => {
+            return this.http.post<SignUp>(`${env.environment.baseUrl}/families`, 
+                {
+                    'name':createFanily.payload
+                },
+                {
+                    headers: new HttpHeaders({
+                        'Content-Type': 'application/json'
+                    })
+                }
+            )
+            .pipe(
+                map((_) => {
+                    return new SignUpActions.FamilyCreated();
+                }),
+                catchError((errorResp) => {
+                    return of(new SignUpActions.FailedSignUp(errorResp.error.errorMessage));
+                })
+            )
+        })
+    );
+    
 
     constructor(private actions$: Actions,
         private http: HttpClient,

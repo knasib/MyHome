@@ -20,7 +20,6 @@ export class MemberComponent implements OnInit {
 
   ngOnInit(): void {
     //TODO: Once signup flow completed, remove this the familyid from localStorage
-    localStorage.setItem("familyName", "Dhanraj");
     this.store.dispatch(new membersActions.GetMembers());
   }
 

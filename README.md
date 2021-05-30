@@ -6,4 +6,7 @@ MyHome Project - This is a project which will has different details about one fa
 
 This project is in development phase. 
 
-Currently, backend APIs are not having any authentication mechanism. It will be added in future.
+Technologies used
+  * Spring boot
+  * Angular
+  * Type Script

@@ -19,6 +19,7 @@ import { catchError, tap } from 'rxjs/Operators';
 export class SignupComponent implements OnInit, OnDestroy {
   signUp: FormGroup;
   subscription: Subscription;
+  signUpObj: Subscription;
   error: String;
   loading: boolean = false;
 
@@ -32,17 +33,19 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.loading = signupState.loading;
     });
 
-    if(!this.error) {
-      this.initForm();
-    }
+    this.initForm(null, null, null, null);
+    
   }
 
-  initForm() {
+  initForm(familyName: String,
+    userId: string,
+    password: string, 
+    confirmPassword: string) {
     this.signUp = new FormGroup({
-      familyName: new FormControl(null, Validators.required, this.forbiddenFamilyName.bind(this)),
-      userId: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      confirmPassword: new FormControl(null, Validators.required)
+      familyName: new FormControl(familyName, Validators.required, this.forbiddenFamilyName.bind(this)),
+      userId: new FormControl(userId, Validators.required),
+      password: new FormControl(password, Validators.required),
+      confirmPassword: new FormControl(confirmPassword, Validators.required)
     });
   }
 
@@ -57,8 +60,20 @@ export class SignupComponent implements OnInit, OnDestroy {
   createFamily() {
     if(this.signUp.get("familyName") != null) {
       this.store.dispatch(new signUpActions.CreateFamily(this.signUp.get("familyName").value));
-      this.signUp.patchValue({'familyName': this.signUp.get("familyName").value});
+      //this.signUp.patchValue({'familyName': this.signUp.get("familyName").value})
     }
+    this.signUpObj = this.store.select("signup").subscribe(signupState=> {
+      this.error = signupState.error;
+      this.loading = signupState.loading;
+      this.initForm(this.signUp.get("familyName").value,
+                  this.signUp.get("userId").value,
+                  this.signUp.get("password").value,
+                  this.signUp.get("confirmPassword").value
+                  );
+    });
+    
+    
+    //console.log(this.signUp);
   }
 
   forbiddenFamilyName(control: any): Promise<any> | Observable<any>  {
@@ -78,5 +93,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    if(this.signUpObj != null) {
+      this.signUpObj.unsubscribe();
+    }
   }
 }

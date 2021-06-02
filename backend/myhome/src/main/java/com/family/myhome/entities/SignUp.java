@@ -15,14 +15,11 @@ import javax.persistence.*;
 @Builder
 public class SignUp {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String userId;
     private String password;
     private String confirmPassword;
     private String familyName;
 
-    /*@OneToOne
-    @JoinColumn(name = "familyName", insertable = false,updatable = false, referencedColumnName = "name")
-    @Transient
-    @JsonIgnore
-    private Family family;*/
 }

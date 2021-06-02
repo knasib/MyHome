@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class LoginService {
@@ -23,10 +24,10 @@ public class LoginService {
 
     @Transactional
     public UserLogin login(UserLoginRequest loginRequest) {
-        final SignUp signUp = signUpRepository.validateLogin(loginRequest.getUserId(),
+        final Optional<SignUp> signUp = signUpRepository.validateUser(loginRequest.getUserId(),
                 loginRequest.getPassword(),
                 loginRequest.getFamilyName());
-        if(signUp == null) {
+        if(!signUp.isPresent()) {
             throw new GenericException(String.format("Login failed for %s", loginRequest.getUserId()));
         }
 

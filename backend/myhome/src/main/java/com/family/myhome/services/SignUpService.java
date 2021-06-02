@@ -29,15 +29,17 @@ public class SignUpService {
             throw new GenericException("Password & Confirm Password are different");
         }
 
-        if(signUpRepository.validateLogin(newUser.getUserId(),
+        if(signUpRepository.validateUser(newUser.getUserId(),
                 newUser.getPassword(),
-                newUser.getFamilyName()) != null) {
+                newUser.getFamilyName()).isPresent()) {
             throw new GenericException(String.format("User %s is already registered", newUser.getFamilyName()));
         }
 
         signUpRepository.save(newUser);
-        newUser.setPassword("*****");
-        newUser.setConfirmPassword("*****");
-        return newUser;
+        return SignUp.builder()
+                .userId(newUser.getUserId())
+                .familyName(newUser.getFamilyName())
+                .password("******")
+                .confirmPassword("*****").build();
     }
 }

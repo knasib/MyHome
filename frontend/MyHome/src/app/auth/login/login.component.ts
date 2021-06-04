@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   clear() {
+    this.store.dispatch(new LoginActions.ClearLoginError());
     this.loginForm.reset();
   }
 

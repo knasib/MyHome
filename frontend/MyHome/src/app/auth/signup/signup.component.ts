@@ -71,9 +71,6 @@ export class SignupComponent implements OnInit, OnDestroy {
                   this.signUp.get("confirmPassword").value
                   );
     });
-    
-    
-    //console.log(this.signUp);
   }
 
   forbiddenFamilyName(control: any): Promise<any> | Observable<any>  {

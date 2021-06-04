@@ -1,8 +1,9 @@
 export class User {
     constructor(
         public familyName: string,
-        public userId:String,
+        public userId: string,
         public loginAt: Date,
-        public expiryAt: Date
+        public expiryAt: Date,
+        public token?: string
     ){}
 }

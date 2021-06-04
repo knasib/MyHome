@@ -27,7 +27,6 @@ export class FailedLogin implements Action {
 
 export class Logout implements Action {
     readonly type = LOGOUT;
-    //constructor(public payload: String){}
 }
 
 export class AutoLogout implements Action {

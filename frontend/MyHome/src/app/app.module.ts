@@ -32,7 +32,7 @@ import { PurchasingGroceryService } from './shared/services/purchasing.grocery.s
 import { MembersEffects } from './member/store/members.effects';
 
 import * as fromApp from './store/app.reducer';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -45,6 +45,7 @@ import { MonthlyBarchartComponent } from './expense/monthly-barchart/monthly-bar
 import { DoughnutChartComponent } from './expense/doughnut-chart/doughnut-chart.component';
 import { DoughnutChartEffect } from './expense/doughnut-chart/store/doughnut-chart.effects';
 import { BarChartEffect } from './expense/monthly-barchart/store/bar-chart.effects';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,12 @@ import { BarChartEffect } from './expense/monthly-barchart/store/bar-chart.effec
     MemberService,
     PurchasedGroceryService,
     PurchasingGroceryService,
-    DatePipe
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

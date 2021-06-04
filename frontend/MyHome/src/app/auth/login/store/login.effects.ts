@@ -32,9 +32,17 @@ export class LoginEffect {
                     localStorage.removeItem("familyName");
                 }),
                 map((user) => {
-                    return new LoginActions.SuccessLogin(user);
+                    //TODO : Get this token from backend
+                    let cacheUser = new User(user.familyName, 
+                        user.userId, 
+                        user.loginAt, 
+                        user.expiryAt,
+                        loginStartAction.payload.password);
+                    user.token = loginStartAction.payload.password;
+                    return new LoginActions.SuccessLogin(cacheUser);
                 }),
                 catchError(error => {
+                    console.log(error);
                     return of(new LoginActions.FailedLogin(error.error.errorMessage));
                 })
             )

@@ -15,6 +15,6 @@ public class PurchasingItemService {
     PurchasingItemRepository repository;
     public List<PurchasingItem> getItems(String familyName) {
         log.info("Get Purchasing items for family '{}'", familyName);
-        return repository.findAll();
+        return repository.findAllByFamilyName(familyName);
     }
 }

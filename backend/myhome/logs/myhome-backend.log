@@ -1,0 +1,10 @@
+2021-06-04 20:09:29 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-06-04 20:09:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-06-04 20:09:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2021-06-04 20:09:29 [http-nio-8080-exec-1] INFO  c.f.myhome.services.LoginService - Validation the user login for user 'nasib'
+2021-06-04 20:09:29 [http-nio-8080-exec-2] INFO  c.f.myhome.services.MemberService - Get all family member of family 'Sahu'
+2021-06-04 20:09:30 [http-nio-8080-exec-3] INFO  c.f.m.services.PurchasingItemService - Get Purchasing items for family 'Sahu'
+2021-06-04 20:09:55 [http-nio-8080-exec-5] INFO  c.f.m.services.PurchasedItemService - Save Purchased items for family 'Sahu'. Items are [PurchasedItem(id=null, name=Daal, price=150.0, quantity=1, quantityUnit=Kg, category=RICEDAAL, purchaseDate=Fri Jun 04 20:09:54 IST 2021, familyName=null)]
+2021-06-04 20:09:57 [http-nio-8080-exec-6] INFO  c.f.myhome.services.ChartDataService - Fetch BarChart Data for family 'Sahu' for Current Year
+2021-06-04 20:09:57 [http-nio-8080-exec-7] INFO  c.f.myhome.services.ChartDataService - Fetch Doughnut Chart Data for 'null' month for family 'Sahu'
+2021-06-04 20:09:58 [http-nio-8080-exec-8] INFO  c.f.myhome.services.ChartDataService - Fetch Doughnut Chart Data for '2021-06' month for family 'Sahu'

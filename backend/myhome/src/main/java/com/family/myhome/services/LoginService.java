@@ -7,6 +7,7 @@ import com.family.myhome.entities.SignUp;
 import com.family.myhome.entities.UserLogin;
 import com.family.myhome.repositories.SignUpRepository;
 import com.family.myhome.repositories.UserLoginRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class LoginService {
     @Autowired
     UserLoginRepository userLoginRepository;
@@ -24,10 +26,12 @@ public class LoginService {
 
     @Transactional
     public UserLogin login(UserLoginRequest loginRequest) {
+        log.info("Validation the user login for user '{}'", loginRequest.getUserId());
         final Optional<SignUp> signUp = signUpRepository.validateUser(loginRequest.getUserId(),
                 loginRequest.getPassword(),
                 loginRequest.getFamilyName());
         if(!signUp.isPresent()) {
+            log.error("Login failed for '{}'", loginRequest.getUserId());
             throw new GenericException(String.format("Login failed for %s", loginRequest.getUserId()));
         }
 
@@ -47,6 +51,7 @@ public class LoginService {
     }
 
     public void logout(String userId) {
+        log.info("Logout for user '{}'", userId);
         userLoginRepository.deleteByUserId(userId);
     }
 }

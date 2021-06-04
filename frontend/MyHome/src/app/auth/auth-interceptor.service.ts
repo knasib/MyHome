@@ -18,18 +18,12 @@ export class AuthInterceptor implements HttpInterceptor {
             }),
             exhaustMap(user => {
                 if(!user) {
-                    console.log("user is null returning");
                     return next.handle(req);
                 }
-                console.log("Outside if loop");
                 let authString = 'Basic ' + btoa(user.userId + ':' + user.token + ':' + user.familyName);
-                //let headers = new HttpHeaders();
-                //headers = req.clone().headers;
-                //headers.append('Authorization', authString)
                 const modReq = req.clone({
                     headers: new HttpHeaders().set('Authorization', authString)
                 });
-                console.log(modReq);
                 return next.handle(modReq);
             })
         );

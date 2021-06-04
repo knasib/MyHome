@@ -3,6 +3,7 @@ package com.family.myhome.services;
 import com.family.myhome.dto.ChartData;
 import com.family.myhome.entities.PurchasedItem;
 import com.family.myhome.repositories.PurchasedItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
+@Slf4j
 public class ChartDataService {
     private static final String YYYY_MM_DD = "yyyy-MM-dd";
     @Autowired
     PurchasedItemRepository repository;
 
     public ChartData getDoughnutDataASpecificMonth(String familyName, String yearMonth) {
+        log.info("Fetch Doughnut Chart Data for '{}' month for family '{}'", yearMonth, familyName);
         Date end, start;
         if(yearMonth == null || yearMonth.isEmpty()) {
             end = new Date();
@@ -26,6 +29,7 @@ public class ChartDataService {
             try {
                 start = new SimpleDateFormat(YYYY_MM_DD).parse(date);
             } catch (ParseException e) {
+                log.error("Invalid Request", e);
                 throw new RuntimeException("Invalid Request");
             }
             end = new Date(start.getYear(), start.getMonth()+1, 01);
@@ -48,6 +52,7 @@ public class ChartDataService {
     }
 
     public ChartData getBarChartDataForCurrentYear(String familyName) {
+        log.info("Fetch BarChart Data for family '{}' for Current Year", familyName);
         Date end = new Date();
         Date start = new Date(end.getYear(), Calendar.JANUARY, 1);
         final List<PurchasedItem> list = repository.findAllByFamilyNameAndPurchaseDateBetweenOrderByPurchaseDateAsc(

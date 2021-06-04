@@ -6,6 +6,7 @@ import com.family.myhome.entities.PurchasingItem;
 import com.family.myhome.repositories.FamilyRepository;
 import com.family.myhome.repositories.PurchasedItemRepository;
 import com.family.myhome.repositories.PurchasingItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PurchasedItemService {
     @Autowired
     PurchasedItemRepository purchasedItemRepository;
@@ -27,7 +29,9 @@ public class PurchasedItemService {
 
     @Transactional
     public void saveItems(String familyName, List<PurchasedItem> purchasedItems) {
+        log.info("Save Purchased items for family '{}'. Items are {}", familyName, purchasedItems);
         if(!familyRepository.findByName(familyName).isPresent()) {
+            log.error("There is no family with name '{}'", familyName);
             throw new GenericException("There is no family with name " + familyName);
         }
         purchasedItems.forEach(item -> item.setFamilyName(familyName));
@@ -38,7 +42,7 @@ public class PurchasedItemService {
 
         purchasingItemRepository.saveAll(
                 purchasedItems.stream().map(purchasedItem -> {
-                    final PurchasingItem purchasingItem = PurchasingItem.builder()
+                    return PurchasingItem.builder()
                                     .name(purchasedItem.getName())
                                     .price(purchasedItem.getPrice())
                                     .quantity(purchasedItem.getQuantity())
@@ -46,12 +50,12 @@ public class PurchasedItemService {
                                     .category(purchasedItem.getCategory())
                                     .familyName(purchasedItem.getFamilyName())
                             .build();
-                    return purchasingItem;
                 }).collect(Collectors.toList())
         );
     }
 
     public List<PurchasedItem> getPurchasedItemList(String familyName) {
+        log.info("Get All Purchased items for family '{}'", familyName);
         if(!familyRepository.findByName(familyName).isPresent()) {
             throw new GenericException("There is no family with name " + familyName);
         }

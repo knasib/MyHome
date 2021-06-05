@@ -1,17 +1,16 @@
 package com.family.myhome.services;
 
+import com.family.myhome.repositories.PurchasedItemRepository;
+import com.family.myhome.repositories.PurchasingItemRepository;
 import com.family.myhome.Exceptions.GenericException;
 import com.family.myhome.entities.PurchasedItem;
 import com.family.myhome.entities.PurchasingItem;
 import com.family.myhome.repositories.FamilyRepository;
-import com.family.myhome.repositories.PurchasedItemRepository;
-import com.family.myhome.repositories.PurchasingItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

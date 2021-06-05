@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <property name="DEV_HOME" value="./logs"/>
-    <property name="APP_NAME" value="myhome-backend"/>
+
+<included>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -31,7 +29,7 @@
     </appender>
 
 
-    <logger name="com.microservices.demo" level="info" additivity="false">
+    <logger name="com.family.myhome" level="info" additivity="false">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </logger>
@@ -40,4 +38,5 @@
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>
-</configuration>
+
+</included>

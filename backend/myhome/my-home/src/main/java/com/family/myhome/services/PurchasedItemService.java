@@ -2,7 +2,7 @@ package com.family.myhome.services;
 
 import com.family.myhome.repositories.PurchasedItemRepository;
 import com.family.myhome.repositories.PurchasingItemRepository;
-import com.family.myhome.Exceptions.GenericException;
+import com.family.myhome.exceptions.GenericException;
 import com.family.myhome.entities.PurchasedItem;
 import com.family.myhome.entities.PurchasingItem;
 import com.family.myhome.repositories.FamilyRepository;

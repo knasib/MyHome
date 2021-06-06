@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
+import { ChatComponent } from "./chat/chat.component";
 
 import { ExpenseComponent } from "./expense/expense.component";
 import { GroceryComponent } from "./grocery/grocery.component";
@@ -24,6 +25,7 @@ const appRoutes : Routes = [
     ]},
     {path: 'grocery', component: GroceryComponent},
     {path: 'expense', component: ExpenseComponent},
+    {path: 'chat', component: ChatComponent},
     {path: 'notification', component: NotificationComponent},
     {path: '**', redirectTo: '/login'}
 ]

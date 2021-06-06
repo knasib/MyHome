@@ -1,4 +1,4 @@
-package com.family.myhome.Exceptions;
+package com.family.myhome.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -48,7 +48,8 @@ Thumbs.db
 
 
 #Backend
-/backend/myhome/target/
+/backend/myhome/**/target/
+/backend/myhome/logs/
 
 
 /backend/myhome/HELP.md

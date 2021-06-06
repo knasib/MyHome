@@ -1,7 +1,7 @@
 package com.family.myhome.filters;
 
 
-import com.family.myhome.Exceptions.GenericException;
+import com.family.myhome.exceptions.GenericException;
 import com.family.myhome.repositories.SignUpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;

@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080'
+  baseUrl: 'http://localhost:8080',
+  chat: {
+    chatUrl: 'http://localhost:9001/myhome-chat',
+    sendTo: '/chat/send/',
+    topic: '/topic/'
+  }
 };
 
 /*

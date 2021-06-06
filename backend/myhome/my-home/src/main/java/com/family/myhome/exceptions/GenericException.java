@@ -1,7 +1,4 @@
-package com.family.myhome.Exceptions;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+package com.family.myhome.exceptions;
 
 //@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 public class GenericException  extends RuntimeException {

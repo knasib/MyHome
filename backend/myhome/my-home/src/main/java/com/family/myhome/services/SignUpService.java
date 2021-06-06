@@ -1,6 +1,6 @@
 package com.family.myhome.services;
 
-import com.family.myhome.Exceptions.GenericException;
+import com.family.myhome.exceptions.GenericException;
 import com.family.myhome.entities.SignUp;
 import com.family.myhome.repositories.FamilyRepository;
 import com.family.myhome.repositories.SignUpRepository;

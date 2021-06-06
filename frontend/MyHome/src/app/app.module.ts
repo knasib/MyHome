@@ -46,6 +46,7 @@ import { DoughnutChartComponent } from './expense/doughnut-chart/doughnut-chart.
 import { DoughnutChartEffect } from './expense/doughnut-chart/store/doughnut-chart.effects';
 import { BarChartEffect } from './expense/monthly-barchart/store/bar-chart.effects';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     LoginComponent,
     SignupComponent,
     MonthlyBarchartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

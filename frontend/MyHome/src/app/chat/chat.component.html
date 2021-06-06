@@ -1,0 +1,16 @@
+<div class="row">
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <div class="col-sm-10">
+            <input type="text" id="chatmessage" formControlName="chatmessage" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-success">Send</button>
+        </div>       
+    </form>
+</div>
+
+<div class="row">
+    <div *ngFor="let chat of chatBook">
+        <strong>{{chat.userId}} : </strong> {{chat.message}}
+    </div>
+</div>

@@ -1,4 +1,9 @@
 export const environment = {
   production: true,
-  baseUrl: ''
+  baseUrl: '',
+  chat: {
+    chatUrl: '/myhome-chat',
+    sendTo: '/chat/topic/',
+    topic: '/topic/'
+  }
 };
